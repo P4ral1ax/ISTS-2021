@@ -6,6 +6,15 @@
 > netsh advfirewall firewall add rule name=”ICMP-in” dir=in action=allow protocol=icmpv4:8,any
 > netsh advfirewall firewall add rule name=”ICMP-out” dir=out action=allow protocol=icmpv4:8,any
 
+> netsh advfirewall firewall add rule name="SFTP-in" dir=in protocol=tcp localport=22 action=allow
+> netsh advfirewall firewall add rule name="SFTP-out" dir=out protocol=tcp localport=22 action=allow
+
+> netsh advfirewall firewall add rule name=”HTTPI” dir=in protocol=tcp localport=443,80 action=allow
+> netsh advfirewall firewall add rule name=”HTTPO” dir=out protocol=tcp localport=443,80 action=allow
+
+> netsh advfirewall firewall add rule name=”rsync-in” dir=in protocol=tcp localport=873 action=allow
+> netsh advfirewall firewall add rule name=”rsync-out” dir=out protocol=tcp localport=873 action=allow
+
 > netsh advfirewall firewall add rule name=”RDP” dir=out protocol=tcp remoteport=3389 action=allow
 > netsh advfirewall firewall add rule name=”RDP” dir=in protocol=tcp remoteport=3389 action=allow
 

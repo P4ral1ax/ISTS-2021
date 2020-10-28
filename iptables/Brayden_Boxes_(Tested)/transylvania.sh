@@ -33,5 +33,4 @@ start() {
     # Backup Rules
     iptables-save > /etc/ip_rules
 }
-
 start

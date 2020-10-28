@@ -27,6 +27,10 @@ start() {
     iptables -A INPUT -p tcp --dport 3000 -m state --state NEW,ESTABLISHED -j ACCEPT
     iptables -A OUTPUT -p tcp --sport 3000 -m state --state ESTABLISHED -j ACCEPT
 
+    # RDP
+    iptables -A INPUT -p tcp --dport 3389 -m state --state NEW,ESTABLISHED -j ACCEPT
+    iptables -A OUTPUT -p tcp --sport 3389 -m state --state ESTABLISHED -j ACCEPT
+
     ########################
     # OTHER OPTIONAL RULES #
     ########################

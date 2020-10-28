@@ -1,14 +1,6 @@
 #!/bin/sh
 
-###############################
-# IPTABLES RULES LOOKUP TABLE #
-###############################
-
 start() {
-
-    #################
-    # DEFAULT RULES #
-    #################
 
     # Flush Tables
     iptables -F

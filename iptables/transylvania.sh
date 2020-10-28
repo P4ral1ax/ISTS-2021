@@ -30,16 +30,16 @@ start() {
     iptables -A INPUT -p tcp --dport ssh -m state --state NEW,ESTABLISHED -j ACCEPT
     iptables -A OUTPUT -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
 
-   
+    # Allow Web Traffic
+    iptables -A INPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+    iptables -A OUTPUT -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT
 
     # Drop All Traffic If Not Matching
     iptables -A INPUT -j DROP
     iptables -A OUTPUT -j DROP
 
     # Backup Rules
-    iptables-save > ~/rules
-
-    # For Remote Boxes Test
-    sleep 3
-    iptables -F
+    iptables-save > /etc/ip_rules
 }
+
+start

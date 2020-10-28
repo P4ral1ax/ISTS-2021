@@ -38,14 +38,13 @@ start() {
 
 
     # # Allow HTTP Outgoing
-    # iptables -A OUTPUT -o eth0 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
-    # iptables -A INPUT -i eth0 -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT
+    # iptables -A OUTPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+    # iptables -A INPUT -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT
 
     # # Allow DNS OutGoing
-    # iptables -A OUTPUT -p udp -d $ip --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
-	# iptables -A INPUT  -p udp -s $ip --sport 53 -m state --state ESTABLISHED     -j ACCEPT
-	# iptables -A OUTPUT -p tcp -d $ip --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
-	# iptables -A INPUT  -p tcp -s $ip --sport 53 -m state --state ESTABLISHED     -j ACCEPT
+    # iptables -A OUTPUT -p udp --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
+	# iptables -A INPUT  -p udp --sport 53 -m state --state ESTABLISHED -j ACCEPT
+	
 
     # Drop All Traffic If Not Matching
     iptables -A INPUT -j DROP

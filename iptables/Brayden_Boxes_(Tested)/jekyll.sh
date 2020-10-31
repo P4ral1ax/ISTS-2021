@@ -1,5 +1,8 @@
 #!/bin/sh
 # VERIFIED 
+# May Have to fuck around with firewalld
+# sudo systemctl stop firewalld
+# sudo sysytemctl disable firewalld
 
 start() {
 

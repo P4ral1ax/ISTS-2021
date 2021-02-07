@@ -13,7 +13,6 @@ start() {
     # Accept by default in case of flush
     iptables -P INPUT ACCEPT
     iptables -P OUTPUT ACCEPT
-
     # Allow ICMP
     iptables -A INPUT -p ICMP -j ACCEPT
     iptables -A OUTPUT -p ICMP -j ACCEPT

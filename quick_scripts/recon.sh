@@ -113,7 +113,7 @@ verbose(){
 }
 
 # Get User Input to get sleep time and Type
-echo -ne "Enter Option : \n1) Basic Mode\n2) Verbose Mode\n : "
+echo -ne "Enter Option (Default : Basic)\n1) Basic Mode\n2) Verbose Mode\n\n : "
 read opt
 echo -n "Pause Time For Each Section (Default 0) : "
 read sec
@@ -133,8 +133,6 @@ if [[ $opt == 2 ]]; then
   basic
   verbose
   exit 0
-else 
-  echo "Invalid Option"
-fi
+
 
 

@@ -1,7 +1,12 @@
 #!/bin/bash
 
 # Get User Input to get sleep time and Type
-# Check run as root
+
+if [ "$EUID" -ne 0 ]
+  then echo "Must run as superuser"
+  exit
+fi
+
 # Clean Up the Output of some 
 # Look into Autoruns, Potetal Rootkits, Auth backdoors
 

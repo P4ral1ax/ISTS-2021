@@ -17,7 +17,8 @@ t="0s"
 
 timestamp() {
   date=date +"%T"
-  time="--------- ${date} ---------" # current time
+  time="\n\n--------- ${date} ---------\n\m" # current time
+  echo $time
 }
 
 basic(){

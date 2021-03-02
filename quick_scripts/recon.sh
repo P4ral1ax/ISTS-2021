@@ -2,6 +2,9 @@
 
 # Get User Input to get sleep time and Type
 
+###########################
+## Must run as superuser ##
+###########################
 if [ "$EUID" -ne 0 ]
   then echo "Must run as superuser"
   exit
@@ -11,9 +14,9 @@ fi
 # Look into Autoruns, Potetal Rootkits, Auth backdoors
 
 sl="sleep"
-s="sudo"
+su="sudo"
 t="1s"
-
+s = $sl$t
 
 basic(){
     echo -e "\n-----------\n > Users <\n-----------"

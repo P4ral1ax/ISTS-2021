@@ -16,7 +16,8 @@ s="sudo"
 t="0s"
 
 timestamp() {
-  echo -e "\n\n-------- ${date} --------\n\n"
+  
+  echo -e "\n\n-------- $(date) --------\n\n"
 }
 
 basic(){
@@ -117,6 +118,7 @@ verbose(){
 }
 
 # Get User Input to get sleep time and Type
+timestamp
 echo -ne "Enter Option (Default : Basic)\n1) Basic Mode\n2) Verbose Mode\n\n : "
 read opt
 echo -n "Pause Time For Each Section (Default 0) : "
@@ -128,12 +130,10 @@ if [[ -n $sec ]]; then
 fi
 
 # Run User Selected Mode
-if [[ $opt == 1 ]]; then
-  timestamp 
+if [[ $opt == 1 ]]; then 
   basic
   exit 0
 else
-  timestamp
   basic
   verbose
   exit 0

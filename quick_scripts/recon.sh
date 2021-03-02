@@ -15,6 +15,11 @@ sl="sleep"
 s="sudo"
 t="0s"
 
+timestamp() {
+  date=date +"%T"
+  time="--------- ${date} ---------" # current time
+}
+
 basic(){
     echo -e "\n-----------\n > Users <\n-----------"
     $s getent passwd | grep -Ev '/nologin|/false' # Use Sed to clean this up
@@ -125,9 +130,11 @@ fi
 
 # Run User Selected Mode
 if [[ $opt == 1 ]]; then
+  timestamp 
   basic
   exit 0
 else
+  timestamp
   basic
   verbose
   exit 0

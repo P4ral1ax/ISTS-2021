@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# Get User Input to get sleep time and Type
-
 ###########################
 ## Must run as superuser ##
 ###########################
-if [ "$EUID" -ne 0 ]
-  then echo "Must run as superuser"
+if [ "$EUID" -ne 0 ]; then 
+  echo "Must run as superuser"
   exit
 fi
 
@@ -14,9 +12,8 @@ fi
 # Look into Autoruns, Potetal Rootkits, Auth backdoors
 
 sl="sleep"
-su="sudo"
+s="sudo"
 t="1s"
-s = $sl$t
 
 basic(){
     echo -e "\n-----------\n > Users <\n-----------"
@@ -81,7 +78,7 @@ verbose(){
     $s cat /etc/crontab | grep -Ev '#|PATH|SHELL'
     $s cat /etc/cron.d | grep -Ev '#|PATH|SHELL'
     $s systemctl list-timers
-
+    sleep $t
 
     echo -e "\n--------------\n > lsof Raw <\n-------------- "
     $s lsof | grep -i -E 'raw|pcap'
@@ -100,9 +97,11 @@ verbose(){
 
     echo -e "\n---------------\n > Services <\n--------------- "
     $s systemctl --type=service | cat
+    sleep $t
 
     echo -e "\n--------------------\n > Auth Backdoors <\n-------------------- "
     $s cat /etc/sudoers | grep NOPASS
+    sleep $t
 
     echo -e "\n------------------------------\n > Files Modified Last 5Min <\n------------------------------ "
     $s find / -xdev -mmin -5 -ls &>/tmp/.ICE-linux & 
@@ -113,6 +112,29 @@ verbose(){
     sleep $t
 }
 
-basic
-verbose
-exit 0
+# Get User Input to get sleep time and Type
+echo -n "Enter Option : \n1) Basic Mode\n2) Verbose Mode\n : "
+read opt
+echo -n "Pause Time For Each Section (Default 0) : "
+read sec
+
+# Set Pause Time
+if [[ -n $sec ]]; then
+  $t = $sec
+fi
+
+# Run User Selected Mode
+if [[ $opt == 1 ]]; then
+  basic
+  exit 0
+fi 
+
+if [[ $opt == 2 ]]; then
+  basic
+  verbose
+  exit 0
+else 
+  echo "Invalid Option"
+fi
+
+

@@ -120,19 +120,18 @@ read sec
 
 # Set Pause Time
 if [[ -n $sec ]]; then
-  $t = ${sec}s
+  t=${sec}s
 fi
 
 # Run User Selected Mode
 if [[ $opt == 1 ]]; then
   basic
   exit 0
-fi 
-
-if [[ $opt == 2 ]]; then
+else
   basic
   verbose
   exit 0
+fi
 
 
 

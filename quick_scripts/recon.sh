@@ -16,9 +16,7 @@ s="sudo"
 t="0s"
 
 timestamp() {
-  date=date +"%T"
-  time="\n\n--------- ${date} ---------\n\m" # current time
-  echo $time
+  echo -e "\n\n-------- ${date} --------\n\n"
 }
 
 basic(){

@@ -13,7 +13,7 @@ fi
 
 sl="sleep"
 s="sudo"
-t="1s"
+t="0s"
 
 basic(){
     echo -e "\n-----------\n > Users <\n-----------"
@@ -113,14 +113,14 @@ verbose(){
 }
 
 # Get User Input to get sleep time and Type
-echo -n "Enter Option : \n1) Basic Mode\n2) Verbose Mode\n : "
+echo -ne "Enter Option : \n1) Basic Mode\n2) Verbose Mode\n : "
 read opt
 echo -n "Pause Time For Each Section (Default 0) : "
 read sec
 
 # Set Pause Time
 if [[ -n $sec ]]; then
-  $t = $sec
+  $t = ${sec}s
 fi
 
 # Run User Selected Mode

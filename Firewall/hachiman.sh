@@ -42,28 +42,28 @@ echo "> Allow Loopback Traffic"
 iptables -t mangle -A INPUT -i lo -j ACCEPT
 iptables -t mangle -A OUTPUT -o lo -j ACCEPT
 
-#####################
-## Iptables Ranges ##
-#####################
 
-# Allow Scoring | Red Team
-iptables -t mangle -A INPUT -s 172.16.248.0/22 -j ACCEPT
-iptables -t mangle -A OUTPUT -s 172.16.248.0/22 -j ACCEPT
+# #####################
+# ## Iptables Ranges ##
+# #####################
 
-# Allow Team 2 Subnet
-iptables -t mangle -A INPUT -s 10.2.1.0/24 -j ACCEPT
-iptables -t mangle -A OUTPUT -s 10.2.1.0/24 -j ACCEPT
+# # Allow Scoring | Red Team
+# iptables -t mangle -A INPUT -s 172.16.248.0/22 -j ACCEPT
+# iptables -t mangle -A OUTPUT -s 172.16.248.0/22 -j ACCEPT
 
-# Allow Cloud Devices
-iptables -t mangle -A INPUT -s 172.16.2.0/24 -j ACCEPT
-iptables -t mangle -A OUTPUT -s 172.16.2.0/24 -j ACCEPT
+# # Allow Team 2 Subnet
+# iptables -t mangle -A INPUT -s 10.2.1.0/24 -j ACCEPT
+# iptables -t mangle -A OUTPUT -s 10.2.1.0/24 -j ACCEPT
 
-# Deny All Other Teams
-iptables -t mangle -A INPUT -s 10.0.0.0/8 -j DROP
-iptables -t mangle -A OUTPUT -s 10.0.0.0/8 -j DROP
-iptables -t mangle -A INPUT -s 172.16.0.0/16 -j DROP
-iptables -t mangle -A OUTPUT -s 172.16.0.0/16 -j DROP
+# # Allow Cloud Devices
+# iptables -t mangle -A INPUT -s 172.16.2.0/24 -j ACCEPT
+# iptables -t mangle -A OUTPUT -s 172.16.2.0/24 -j ACCEPT
 
+# # Deny All Other Teams
+# iptables -t mangle -A INPUT -s 10.0.0.0/8 -j DROP
+# iptables -t mangle -A OUTPUT -s 10.0.0.0/8 -j DROP
+# iptables -t mangle -A INPUT -s 172.16.0.0/16 -j DROP
+# iptables -t mangle -A OUTPUT -s 172.16.0.0/16 -j DROP
 
 
 #######
@@ -75,12 +75,12 @@ echo "> Allow Inbound SSH"
 iptables -t mangle -A INPUT -p tcp --dport ssh -s 10.2.1.0/24,172.16.248.0/22 -m state --state NEW,ESTABLISHED -j ACCEPT
 iptables -t mangle -A OUTPUT -p tcp --sport ssh -s 10.2.1.0/24,172.16.248.0/22 -m state --state ESTABLISHED -j ACCEPT
 
-
 ########################
 # OTHER OPTIONAL RULES #
 ########################
 
-
+# # Iptables Ranges
+# iptables -t mangle -A INPUT -s 10.5.1.0/24 -j ACCEPT
 # iptables -t mangle -A INPUT -s 10.5.2.0/24 -j ACCEPT
 # iptables -t mangle -A INPUT -s 10.x.x.0/24 -j DENY
 # iptables -t mangle -A OUTPUT -s 10.x.x.0/24 -j DENY
@@ -107,7 +107,7 @@ iptables -t mangle -A INPUT  -p udp --sport 53 -m state --state ESTABLISHED -j A
 
 # Allow SSH Outgoing
 echo "> Allow Outbound SSH"
-iptables -t mangle -A OUTPUT -p tcp --dport 22 -s 172.16.2.0/24 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -t mangle -A OUTPUT -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
 iptables -t mangle -A INPUT -p tcp --sport 22 -s 172.16.2.0/24 -m state --state ESTABLISHED -j ACCEPT
 
 # # Accept Various Port Incoming

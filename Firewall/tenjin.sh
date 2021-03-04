@@ -70,10 +70,10 @@ iptables -t mangle -A OUTPUT -s 172.16.0.0/16 -j DROP
 # SSH #
 #######
 
-# Allow Incoming SSH
+# Allow Incoming SSH Subnet Only
 echo "> Allow Inbound SSH"
-iptables -t mangle -A INPUT -p tcp --dport ssh -m state --state NEW,ESTABLISHED -j ACCEPT
-iptables -t mangle -A OUTPUT -p tcp --sport ssh -m state --state ESTABLISHED -j ACCEPT
+iptables -t mangle -A INPUT -p tcp --dport ssh -s 10.2.1.0/24 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -t mangle -A OUTPUT -p tcp --sport ssh -s 10.2.1.0/24 -m state --state ESTABLISHED -j ACCEPT
 
 
 ########################

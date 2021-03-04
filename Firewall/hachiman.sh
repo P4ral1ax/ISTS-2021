@@ -85,20 +85,20 @@ iptables -t mangle -A OUTPUT -p tcp --sport ssh -m state --state ESTABLISHED -j 
 # iptables -t mangle -A INPUT -s 10.x.x.0/24 -j DENY
 # iptables -t mangle -A OUTPUT -s 10.x.x.0/24 -j DENY
 
-# # Allow HTTP Outgoing
-# echo "> Allow Outbound HTTP"
-# iptables -t mangle -A OUTPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
-# iptables -t mangle -A INPUT -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT
+# Allow HTTP Outgoing
+echo "> Allow Outbound HTTP"
+iptables -t mangle -A OUTPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -t mangle -A INPUT -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT
 
 # # Allow HTTP Incoming
 # echo "> Allow Inbound HTTP"
 # iptables -t mangle -A INPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
 # iptables -t mangle -A OUTPUT -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT
 
-# # Allow DNS Outgoing (UDP)
-# echo "> Allow Outbound DNS (UDP)"
-# iptables -t mangle -A OUTPUT -p udp --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
-# iptables -t mangle -A INPUT  -p udp --sport 53 -m state --state ESTABLISHED -j ACCEPT
+# Allow DNS Outgoing (UDP)
+echo "> Allow Outbound DNS (UDP)"
+iptables -t mangle -A OUTPUT -p udp --dport 53 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -t mangle -A INPUT  -p udp --sport 53 -m state --state ESTABLISHED -j ACCEPT
 
 # # Allow DNS Incoming (UDP)
 # echo "> Allow Inbound DNS (UDP)"

@@ -47,10 +47,6 @@ iptables -t mangle -A OUTPUT -o lo -j ACCEPT
 ## Iptables Ranges ##
 #####################
 
-# Allow Scoring | Red Team
-iptables -t mangle -A INPUT -s 172.16.248.0/22 -j ACCEPT
-iptables -t mangle -A OUTPUT -s 172.16.248.0/22 -j ACCEPT
-
 # Allow Team 2 Subnet
 iptables -t mangle -A INPUT -s 10.2.1.0/24 -j ACCEPT
 iptables -t mangle -A OUTPUT -s 10.2.1.0/24 -j ACCEPT
@@ -111,10 +107,12 @@ iptables -t mangle -A INPUT  -p udp --sport 53 -m state --state ESTABLISHED -j A
 # iptables -t mangle -A OUTPUT -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
 # iptables -t mangle -A INPUT -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
 
-# # Accept Various Port Incoming
-# echo "> Allow Inbound Mayan MDMS"
-# iptables -t mangle -A INPUT -p tcp --dport 8000 -m state --state NEW,ESTABLISHED -j ACCEPT
-# iptables -t mangle -A OUTPUT -p tcp --sport 8000 -m state --state ESTABLISHED -j ACCEPT
+# Accept Various Port Incoming
+echo "> Allow inbound MariaDB/PostgreSQL"
+iptables -t mangle -A INPUT -p tcp --dport 3306 -s 172.16.248.0/22 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -t mangle -A OUTPUT -p tcp --sport 3306 -m state --state ESTABLISHED -j ACCEPT
+iptables -t mangle -A INPUT -p tcp --dport 5432 -s 172.16.248.0/22 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -t mangle -A OUTPUT -p tcp --sport 5432 -m state --state ESTABLISHED -j ACCEPT
 
 # # Allow Various Port Outgoing
 # iptables -t mangle -A OUTPUT -p udp --dport 3000 -m state --state NEW,ESTABLISHED -j ACCEPT

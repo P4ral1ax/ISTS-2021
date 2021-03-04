@@ -93,7 +93,7 @@ iptables -t mangle -A INPUT -p tcp --sport 80 -m state --state ESTABLISHED -j AC
 
 # Allow HTTP Incoming
 echo "> Allow Inbound HTTP"
-iptables -t mangle -A INPUT -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -t mangle -A INPUT -p tcp --dport 80 -s 172.16.248.0/22 -m state --state NEW,ESTABLISHED -j ACCEPT
 iptables -t mangle -A OUTPUT -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT
 
 # Allow DNS Outgoing (UDP)

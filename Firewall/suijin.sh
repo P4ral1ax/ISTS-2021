@@ -47,10 +47,6 @@ iptables -t mangle -A OUTPUT -o lo -j ACCEPT
 ## Iptables Ranges ##
 #####################
 
-# Allow Scoring | Red Team
-iptables -t mangle -A INPUT -s 172.16.248.0/22 -j ACCEPT
-iptables -t mangle -A OUTPUT -s 172.16.248.0/22 -j ACCEPT
-
 # Allow Team 2 Subnet
 iptables -t mangle -A INPUT -s 10.2.1.0/24 -j ACCEPT
 iptables -t mangle -A OUTPUT -s 10.2.1.0/24 -j ACCEPT

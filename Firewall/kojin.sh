@@ -43,27 +43,23 @@ iptables -t mangle -A INPUT -i lo -j ACCEPT
 iptables -t mangle -A OUTPUT -o lo -j ACCEPT
 
 
-# #####################
-# ## Iptables Ranges ##
-# #####################
+#####################
+## Iptables Ranges ##
+#####################
 
-# # Allow Scoring | Red Team
-# iptables -t mangle -A INPUT -s 172.16.248.0/22 -j ACCEPT
-# iptables -t mangle -A OUTPUT -s 172.16.248.0/22 -j ACCEPT
+# Allow Team 2 Subnet
+iptables -t mangle -A INPUT -s 10.2.1.0/24 -j ACCEPT
+iptables -t mangle -A OUTPUT -s 10.2.1.0/24 -j ACCEPT
 
-# # Allow Team 2 Subnet
-# iptables -t mangle -A INPUT -s 10.2.1.0/24 -j ACCEPT
-# iptables -t mangle -A OUTPUT -s 10.2.1.0/24 -j ACCEPT
+# Allow Cloud Devices
+iptables -t mangle -A INPUT -s 172.16.2.0/24 -j ACCEPT
+iptables -t mangle -A OUTPUT -s 172.16.2.0/24 -j ACCEPT
 
-# # Allow Cloud Devices
-# iptables -t mangle -A INPUT -s 172.16.2.0/24 -j ACCEPT
-# iptables -t mangle -A OUTPUT -s 172.16.2.0/24 -j ACCEPT
-
-# # Deny All Other Teams
-# iptables -t mangle -A INPUT -s 10.0.0.0/8 -j DROP
-# iptables -t mangle -A OUTPUT -s 10.0.0.0/8 -j DROP
-# iptables -t mangle -A INPUT -s 172.16.0.0/16 -j DROP
-# iptables -t mangle -A OUTPUT -s 172.16.0.0/16 -j DROP
+# Deny All Other Teams
+iptables -t mangle -A INPUT -s 10.0.0.0/8 -j DROP
+iptables -t mangle -A OUTPUT -s 10.0.0.0/8 -j DROP
+iptables -t mangle -A INPUT -s 172.16.0.0/16 -j DROP
+iptables -t mangle -A OUTPUT -s 172.16.0.0/16 -j DROP
 
 
 #######

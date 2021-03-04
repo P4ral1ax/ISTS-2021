@@ -59,10 +59,10 @@ iptables -t mangle -A INPUT -s 172.16.2.0/24 -j ACCEPT
 iptables -t mangle -A OUTPUT -s 172.16.2.0/24 -j ACCEPT
 
 # Deny All Other Teams
-iptables -t mangle -A INPUT -s 10.0.0.0/8 -j DENY
-iptables -t mangle -A OUTPUT -s 10.0.0.0/8 -j DENY
-iptables -t mangle -A INPUT -s 172.16.0.0/16 -j DENY
-iptables -t mangle -A OUTPUT -s 172.16.0.0/16 -j DENY
+iptables -t mangle -A INPUT -s 10.0.0.0/8 -j DROP
+iptables -t mangle -A OUTPUT -s 10.0.0.0/8 -j DROP
+iptables -t mangle -A INPUT -s 172.16.0.0/16 -j DROP
+iptables -t mangle -A OUTPUT -s 172.16.0.0/16 -j DROP
 
 
 

@@ -58,8 +58,8 @@ iptables -t mangle -A OUTPUT -s 172.16.2.0/24 -j ACCEPT
 # Deny All Other Teams
 iptables -t mangle -A INPUT -s 10.0.0.0/8 -j DROP
 iptables -t mangle -A OUTPUT -s 10.0.0.0/8 -j DROP
-iptables -t mangle -A INPUT -s 172.16.0.0/17 -j DROP
-iptables -t mangle -A OUTPUT -s 172.16.0.0/17 -j DROP
+iptables -t mangle -A INPUT -m iprange --src-range 172.16.0.0-172.16.127.0 -j DROP
+iptables -t mangle -A OUTPUT -m iprange --src-range 172.16.0.0-172.16.127.0 -j DROP
 
 
 #######
@@ -89,7 +89,7 @@ iptables -t mangle -A INPUT -p tcp --sport 80 -m state --state ESTABLISHED -j AC
 
 # Allow HTTP Incoming
 echo "> Allow Inbound HTTP"
-iptables -t mangle -A INPUT -p tcp --dport 80 -s 172.16.248.0/22 -m state --state NEW,ESTABLISHED -j ACCEPT
+iptables -t mangle -A INPUT -p tcp --dport 80 -s 172.16.128.0/17 -m state --state NEW,ESTABLISHED -j ACCEPT
 iptables -t mangle -A OUTPUT -p tcp --sport 80 -m state --state ESTABLISHED -j ACCEPT
 
 # Allow DNS Outgoing (UDP)

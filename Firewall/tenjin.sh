@@ -116,8 +116,6 @@ iptables -t mangle -A INPUT  -p udp --sport 53 -m state --state ESTABLISHED -j A
 echo "> Allow inbound MariaDB/PostgreSQL"
 iptables -t mangle -A INPUT -p tcp --dport 3306 -s 172.16.128.0/17 -m state --state NEW,ESTABLISHED -j ACCEPT
 iptables -t mangle -A OUTPUT -p tcp --sport 3306 -m state --state ESTABLISHED -j ACCEPT
-iptables -t mangle -A INPUT -p tcp --dport 5432 -s 172.16.128.0/17 -m state --state NEW,ESTABLISHED -j ACCEPT
-iptables -t mangle -A OUTPUT -p tcp --sport 5432 -m state --state ESTABLISHED -j ACCEPT
 
 # # Allow Various Port Outgoing
 # iptables -t mangle -A OUTPUT -p udp --dport 3000 -m state --state NEW,ESTABLISHED -j ACCEPT

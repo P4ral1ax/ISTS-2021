@@ -112,10 +112,15 @@ iptables -t mangle -A INPUT  -p udp --sport 53 -m state --state ESTABLISHED -j A
 # iptables -t mangle -A OUTPUT -p tcp --dport 22 -m state --state NEW,ESTABLISHED -j ACCEPT
 # iptables -t mangle -A INPUT -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
 
-# # Accept Various Port Incoming
-# echo "> Allow Inbound Mayan MDMS"
-# iptables -t mangle -A INPUT -p tcp --dport 8000 -m state --state NEW,ESTABLISHED -j ACCEPT
-# iptables -t mangle -A OUTPUT -p tcp --sport 8000 -m state --state ESTABLISHED -j ACCEPT
+# # Accept Various Port
+# echo "> Allow Load Balancing Port 1"
+# iptables -t mangle -A INPUT -p tcp --dport 8000 
+# iptables -t mangle -A OUTPUT -p tcp --sport 8000 
+
+# # Accept Various Port
+# echo "> Allow Load Balancing Port 2"
+# iptables -t mangle -A INPUT -p tcp --dport 8000 
+# iptables -t mangle -A OUTPUT -p tcp --sport 8000 
 
 # # Allow Various Port Outgoing
 # iptables -t mangle -A OUTPUT -p udp --dport 3000 -m state --state NEW,ESTABLISHED -j ACCEPT

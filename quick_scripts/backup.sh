@@ -10,7 +10,7 @@ all(){
   dirs[httpd]="/etc/httpd"
   dirs[nginx]="/etc/nginx"
   dirs[mysql]="/etc/mysql"
-  '/var/lib/mysql')
+  dirs[mysql2]="/var/lib/mysql"
   for i in "${dir_array[@]}"; do
     for key in "${!dir_array[@]}"; do
       if [ -d "$i" ] 

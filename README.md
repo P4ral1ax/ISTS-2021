@@ -1,3 +1,6 @@
-# IRSEC-2021
+# ISTS - 2021
+ISTS 2021 Team 2
 
-This my repository for IRSEC-2021
+Placed 1st
+
+Linux Scripts
